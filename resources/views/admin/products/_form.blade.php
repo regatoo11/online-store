@@ -258,6 +258,25 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <h2 class="text-lg font-semibold text-gray-900 mb-4">{{ __('messages.images') }}</h2>
 
+                @if(isset($product) && $product->media->count())
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-500 mb-2">{{ __('messages.existing_images') }}:</p>
+                        <div class="grid grid-cols-4 gap-3">
+                            @foreach($product->media->sortBy('sort_order') as $media)
+                                <div class="relative group" data-media-id="{{ $media->id }}">
+                                    <img src="{{ asset('storage/' . $media->file_path) }}" alt="{{ $media->alt_text }}" class="w-full h-24 object-cover rounded-lg">
+                                    @if($media->is_primary)
+                                        <span class="absolute bottom-1 left-1 bg-primary text-white text-[10px] px-1.5 py-0.5 rounded">Primary</span>
+                                    @endif
+                                    <button type="button"
+                                            class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                                            onclick="this.closest('[data-media-id]').remove()">×</button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
                 <div id="dropZone"
                      class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary hover:bg-gray-50 transition-colors cursor-pointer">
                     <svg class="w-12 h-12 mx-auto text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

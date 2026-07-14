@@ -163,11 +163,11 @@
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate">{{ $item->product->name_ar }}</p>
                                 @if($item->variant)
-                                    <p class="text-xs text-gray-500">{{ $item->variant->name_ar }}</p>
+                                    <p class="text-xs text-gray-500">{{ $item->variant->name }}</p>
                                 @endif
-                                <p class="text-xs text-gray-500">{{ $item->quantity }} x {{ number_format($item->price, 2) }}</p>
+                                <p class="text-xs text-gray-500">{{ $item->quantity }} x {{ number_format($item->getUnitPrice(), 2) }}</p>
                             </div>
-                            <span class="text-sm font-medium text-gray-900 whitespace-nowrap">{{ number_format($item->price * $item->quantity, 2) }}</span>
+                            <span class="text-sm font-medium text-gray-900 whitespace-nowrap">{{ number_format($item->getSubtotal(), 2) }}</span>
                         </div>
                     @endforeach
                 </div>

@@ -19,13 +19,12 @@ use App\Http\Controllers\Store\CategoryController as StoreCategoryController;
 use App\Http\Controllers\Store\CartController;
 use App\Http\Controllers\Store\CheckoutController;
 use App\Http\Controllers\Store\OrderController as StoreOrderController;
+use App\Http\Controllers\Store\HomeController;
 use App\Http\Controllers\Store\SearchController;
 use App\Http\Controllers\Store\SearchSuggestionsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 

@@ -16,7 +16,12 @@ class SearchController extends Controller
     public function __invoke(Request $request): View
     {
         $term = $request->input('q', '');
-        $filters = $request->only(['category_id', 'type', 'min_price', 'max_price', 'sort_by', 'sort_dir']);
+        $filters = $request->only(['category', 'type', 'min_price', 'max_price', 'sort_by', 'sort_dir']);
+
+        if (!empty($filters['category'])) {
+            $filters['category_id'] = $filters['category'];
+            unset($filters['category']);
+        }
 
         $products = $this->search->searchProducts($term, $filters);
         $categories = $this->search->searchCategories('');

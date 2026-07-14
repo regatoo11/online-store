@@ -26,8 +26,8 @@
                     </div>
                     <div class="flex-1 min-w-0">
                         <h3 class="font-medium text-gray-900">{{ $item->product_name }}</h3>
-                        @if($item->variant?->name_ar)
-                            <p class="text-sm text-gray-500">{{ $item->variant->name_ar }}</p>
+                        @if($item->variant?->name)
+                            <p class="text-sm text-gray-500">{{ $item->variant->name }}</p>
                         @endif
                         <p class="text-sm text-gray-500">{{ __('messages.qty') }}: {{ $item->quantity }} x {{ number_format($item->price, 2) }} {{ __('messages.currency') }}</p>
                     </div>

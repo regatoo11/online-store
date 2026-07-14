@@ -160,6 +160,7 @@ return [
     'variable' => 'Variable',
     'variant' => 'Variant',
     'or_click_to_upload' => 'or click to upload',
+    'existing_images' => 'Existing Images',
     'no_products' => 'No products found',
     'no_products_in_category' => 'No products in this category',
     'search_products' => 'Search products...',
@@ -320,6 +321,10 @@ return [
     'free_shipping_over' => 'Free shipping over',
     'payment_info' => 'Payment Info',
     'returns_policy' => 'Returns Policy',
+    'latest_products' => 'Latest Products',
+    'contact' => 'Contact Us',
+    'all_rights_reserved' => 'All rights reserved',
+    'secure_payment' => 'Secure Payment',
 
     // Cart
     'cart' => 'Shopping Cart',

@@ -160,6 +160,7 @@ return [
     'variable' => 'متغير',
     'variant' => 'متغير',
     'or_click_to_upload' => 'أو اضغط للرفع',
+    'existing_images' => 'الصور الحالية',
     'no_products' => 'لا توجد منتجات',
     'no_products_in_category' => 'لا توجد منتجات في هذا التصنيف',
     'search_products' => 'بحث في المنتجات...',
@@ -320,6 +321,10 @@ return [
     'free_shipping_over' => 'شحن مجاني فوق',
     'payment_info' => 'معلومات الدفع',
     'returns_policy' => 'سياسة الإرجاع',
+    'latest_products' => 'أحدث المنتجات',
+    'contact' => 'تواصل معنا',
+    'all_rights_reserved' => 'جميع الحقوق محفوظة',
+    'secure_payment' => 'دفع آمن',
 
     // Cart
     'cart' => 'سلة التسوق',

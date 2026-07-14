@@ -48,6 +48,8 @@ class UpdateProductRequest extends FormRequest
             'variants.*.stock' => ['required_with:variants', 'integer', 'min:0'],
             'variants.*.attribute_values' => ['required_with:variants', 'array'],
             'variants.*.attribute_values.*' => ['exists:attribute_values,id'],
+            'images' => ['nullable', 'array'],
+            'images.*' => ['file', 'max:5120', 'mimes:jpeg,png,webp,gif'],
         ];
     }
 }

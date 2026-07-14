@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class MediaService
 {
-    public function upload(UploadedFile $file, array $options = []): Media
+    public function upload(UploadedFile $file, array $options = [], ?Model $model = null): Media
     {
         $uuid = (string) Str::uuid();
         $year = date('Y');
@@ -31,6 +31,10 @@ class MediaService
             'alt_text' => $options['alt_text'] ?? null,
             'caption' => $options['caption'] ?? null,
         ]);
+
+        if ($model) {
+            $model->media()->save($media);
+        }
 
         return $media;
     }
