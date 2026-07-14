@@ -58,7 +58,7 @@ class ProductController extends Controller
     {
         $this->authorize('update', $product);
 
-        $product->load('variants.attributeValues');
+        $product->load('variants.attributeValues', 'media');
         $categories = Category::where('is_active', true)->get();
         $attributes = Attribute::with('values')->get();
 

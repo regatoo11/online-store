@@ -26,7 +26,7 @@
                                     <a href="{{ route('store.products.show', $item->product->slug) }}" class="hover:text-primary">{{ $item->product->name_ar }}</a>
                                 </h3>
                                 @if($item->variant)
-                                    <p class="text-sm text-gray-500">{{ $item->variant->name_ar }}</p>
+                                    <p class="text-sm text-gray-500">{{ $item->variant->name }}</p>
                                 @endif
                             </div>
                             <form action="{{ route('store.cart.remove', $item->id) }}" method="POST" class="ml-4">
@@ -50,7 +50,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <span class="font-bold text-gray-900">{{ number_format($item->price * $item->quantity, 2) }} {{ __('messages.currency') }}</span>
+                            <span class="font-bold text-gray-900">{{ number_format($item->getSubtotal(), 2) }} {{ __('messages.currency') }}</span>
                         </div>
                     </div>
                 </div>

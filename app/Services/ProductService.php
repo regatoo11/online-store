@@ -10,7 +10,8 @@ use Illuminate\Support\Collection;
 class ProductService
 {
     public function __construct(
-        protected ProductRepositoryInterface $productRepository
+        protected ProductRepositoryInterface $productRepository,
+        protected MediaService $mediaService,
     ) {}
 
     public function getPaginated(array $filters): LengthAwarePaginator
@@ -22,12 +23,38 @@ class ProductService
 
     public function create(array $data): Product
     {
-        return $this->productRepository->create($data);
+        $images = $data['images'] ?? [];
+        unset($data['images']);
+
+        $product = $this->productRepository->create($data);
+
+        $this->syncImages($product, $images);
+
+        return $product;
     }
 
     public function update(Product $product, array $data): Product
     {
-        return $this->productRepository->update($product, $data);
+        $images = $data['images'] ?? [];
+        unset($data['images']);
+
+        $product = $this->productRepository->update($product, $data);
+
+        $this->syncImages($product, $images);
+
+        return $product;
+    }
+
+    protected function syncImages(Product $product, array $images): void
+    {
+        $existingCount = $product->media()->count();
+
+        foreach ($images as $index => $file) {
+            $this->mediaService->upload($file, [
+                'is_primary' => $existingCount === 0 && $index === 0,
+                'sort_order' => $existingCount + $index,
+            ], $product);
+        }
     }
 
     public function delete(Product $product): bool
